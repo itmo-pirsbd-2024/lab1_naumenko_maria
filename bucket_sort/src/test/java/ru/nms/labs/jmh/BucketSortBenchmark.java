@@ -3,7 +3,6 @@ package ru.nms.labs.jmh;
 
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
-import org.openjdk.jmh.profile.StackProfiler;
 import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
@@ -27,15 +26,9 @@ public class BucketSortBenchmark {
                 .shouldDoGC(true)
                 .resultFormat(ResultFormatType.JSON)
                 .result("bucket-benchmark-result/" + System.currentTimeMillis() + ".json")
-                .addProfiler(StackProfiler.class)
-                .jvmArgsAppend("-Djmh.stack.period=1")
-                .warmupIterations(5)
-                .measurementIterations(5)
-                .forks(1)
                 .build();
 
         new Runner(opt).run();
-//        org.openjdk.jmh.Main.main(args);
     }
 
     @Benchmark

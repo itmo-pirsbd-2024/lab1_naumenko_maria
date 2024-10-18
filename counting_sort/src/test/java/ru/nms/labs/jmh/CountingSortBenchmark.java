@@ -3,6 +3,7 @@ package ru.nms.labs.jmh;
 
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
+import org.openjdk.jmh.profile.AsyncProfiler;
 import org.openjdk.jmh.profile.StackProfiler;
 import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;
@@ -22,20 +23,19 @@ public class CountingSortBenchmark {
     private final CountingSort bucketSort = new CountingSort();
 
     public static void main(String[] args) throws Exception {
-        org.openjdk.jmh.runner.options.Options opt = new OptionsBuilder()
+                org.openjdk.jmh.runner.options.Options opt = new OptionsBuilder()
                 .include(CountingSortBenchmark.class.getSimpleName())
                 .shouldDoGC(true)
                 .resultFormat(ResultFormatType.JSON)
-                .result("counting-benchmark-result/" + System.currentTimeMillis() + ".json")
-                .addProfiler(StackProfiler.class)
-                .jvmArgsAppend("-Djmh.stack.period=1")
-                .warmupIterations(5)
-                .measurementIterations(5)
-                .forks(1)
+                .result("counting-benchmark-result/worst_variant.json")
+//                .addProfiler(AsyncProfiler.class)
+//                .jvmArgsAppend("-Djmh.stack.period=1")
+//                .warmupIterations(5)
+//                .measurementIterations(5)
+//                .forks(1)
                 .build();
 
         new Runner(opt).run();
-//        org.openjdk.jmh.Main.main(args);
     }
 
     @Benchmark

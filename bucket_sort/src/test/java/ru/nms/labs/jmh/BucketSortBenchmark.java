@@ -22,20 +22,20 @@ public class BucketSortBenchmark {
     private final BucketSort bucketSort = new BucketSort();
 
     public static void main(String[] args) throws Exception {
-        org.openjdk.jmh.runner.options.Options opt = new OptionsBuilder()
-                .include(BucketSortBenchmark.class.getSimpleName())
-                .shouldDoGC(true)
-                .resultFormat(ResultFormatType.JSON)
-                .result("bucket-benchmark-result/" + System.currentTimeMillis() + ".json")
-                .addProfiler(StackProfiler.class)
-                .jvmArgsAppend("-Djmh.stack.period=1")
-                .warmupIterations(5)
-                .measurementIterations(5)
-                .forks(1)
-                .build();
-
-        new Runner(opt).run();
-//        org.openjdk.jmh.Main.main(args);
+//        org.openjdk.jmh.runner.options.Options opt = new OptionsBuilder()
+//                .include(BucketSortBenchmark.class.getSimpleName())
+//                .shouldDoGC(true)
+//                .resultFormat(ResultFormatType.JSON)
+//                .result("bucket-benchmark-result/" + System.currentTimeMillis() + ".json")
+//                .addProfiler(StackProfiler.class)
+//                .jvmArgsAppend("-Djmh.stack.period=1")
+//                .warmupIterations(5)
+//                .measurementIterations(5)
+//                .forks(1)
+//                .build();
+//
+//        new Runner(opt).run();
+        org.openjdk.jmh.Main.main(args);
     }
 
     @Benchmark

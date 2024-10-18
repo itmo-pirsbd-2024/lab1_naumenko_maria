@@ -6,34 +6,33 @@ import java.util.List;
 public class CountingSort {
 
     public List<Integer> sort(List<Integer> input) {
-        Integer maxElem = max(input);
-        int[] countedInput = countElements(input, maxElem);
+        List<Integer> countedInput = countElements(input);
         return formResultList(countedInput);
     }
 
-    private Integer max(List<Integer> input) {
-        Integer max = Integer.MIN_VALUE;
+    private List<Integer> countElements(List<Integer> input) {
+        List<Integer> countedInput = new ArrayList<>();
         for (Integer elem: input) {
-            if (elem >= max) max = elem;
-        }
-        return max;
-    }
-
-    private int[] countElements(List<Integer> input, Integer maxElem) {
-        int[] countedInput = new int[maxElem + 1];
-        for (Integer elem: input) {
-            countedInput[elem] = countedInput[elem] + 1;
+            if (elem >= countedInput.size()) growListToSize(countedInput, elem);
+            countedInput.set(elem, countedInput.get(elem) + 1);
         }
         return countedInput;
     }
 
-    private List<Integer> formResultList(int[] countedInput) {
+    private List<Integer> formResultList(List<Integer> countedInput) {
         List<Integer> result = new ArrayList<>();
-        for (int i = 0; i < countedInput.length; i++) {
-            for (int k = 0; k < countedInput[i]; k++) {
+        for (int i = 0; i < countedInput.size(); i++) {
+            for (int k = 0; k < countedInput.get(i); k++) {
                 result.add(i);
             }
         }
         return result;
+    }
+
+    private void growListToSize(List<Integer> list, int size) {
+        int diff = size - list.size() + 1;
+        for (int i = 0; i < diff; i++) {
+            list.add(0);
+        }
     }
 }

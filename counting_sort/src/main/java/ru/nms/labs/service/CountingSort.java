@@ -29,6 +29,6 @@ public class CountingSort {
     }
 
     private int max(int[] input) {
-        return Arrays.stream(input).max().orElse(0);
+        return Arrays.stream(input).parallel().max().orElse(0);
     }
 }

@@ -22,9 +22,13 @@ public class ExecutionPlan {
     @Getter
     private final List<Integer> testData = new ArrayList<>();
 
+    @Getter
+    private int[] testDataAsArray;
+
     @Setup(Level.Trial)
     public void setup() {
         testData.clear();
         testData.addAll(TestDataGenerator.generateRandomList(size, seed));
+        testDataAsArray = testData.stream().mapToInt(Integer::intValue).toArray();
     }
 }

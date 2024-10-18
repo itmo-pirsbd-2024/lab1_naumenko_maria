@@ -10,7 +10,7 @@ public class TestDataGenerator {
             List<Integer> randomList = new ArrayList<>();
             Random rand = new Random(randSeed);
             for (int i = 0; i < size; i++) {
-                int randomValue = Math.abs(rand.nextInt());
+                int randomValue = Math.abs(rand.nextInt(100000));
                 randomList.add(randomValue);
             }
             return randomList;

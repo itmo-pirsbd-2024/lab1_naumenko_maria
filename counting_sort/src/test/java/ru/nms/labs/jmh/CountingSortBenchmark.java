@@ -25,7 +25,7 @@ public class CountingSortBenchmark {
                 .include(CountingSortBenchmark.class.getSimpleName())
                 .shouldDoGC(true)
                 .resultFormat(ResultFormatType.JSON)
-                .result("counting-benchmark-result/" + System.currentTimeMillis() + ".json")
+                .result("counting-benchmark-result/optimized.json")
                 .build();
 
         new Runner(opt).run();
@@ -33,6 +33,6 @@ public class CountingSortBenchmark {
 
     @Benchmark
     public void testBucketSort(ExecutionPlan executionPlan, Blackhole blackhole) {
-        blackhole.consume(bucketSort.sort(executionPlan.getTestData()));
+        blackhole.consume(bucketSort.sort(executionPlan.getTestDataAsArray()));
     }
 }

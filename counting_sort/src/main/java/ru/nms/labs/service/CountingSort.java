@@ -1,39 +1,34 @@
 package ru.nms.labs.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public class CountingSort {
 
-    public List<Integer> sort(List<Integer> input) {
-        Integer maxElem = max(input);
+    public int[] sort(int[] input) {
+        int maxElem = max(input);
         int[] countedInput = countElements(input, maxElem);
-        return formResultList(countedInput);
+        return formResultList(countedInput, input);
     }
 
-    private Integer max(List<Integer> input) {
-        Integer max = Integer.MIN_VALUE;
-        for (Integer elem: input) {
-            if (elem >= max) max = elem;
-        }
-        return max;
-    }
-
-    private int[] countElements(List<Integer> input, Integer maxElem) {
+    private int[] countElements(int[] input, int maxElem) {
         int[] countedInput = new int[maxElem + 1];
-        for (Integer elem: input) {
+        for (int elem : input) {
             countedInput[elem] = countedInput[elem] + 1;
         }
         return countedInput;
     }
 
-    private List<Integer> formResultList(int[] countedInput) {
-        List<Integer> result = new ArrayList<>();
+    private int[] formResultList(int[] countedInput, int[] input) {
+        int index = 0;
         for (int i = 0; i < countedInput.length; i++) {
-            for (int k = 0; k < countedInput[i]; k++) {
-                result.add(i);
-            }
+            int amountOfElements = countedInput[i];
+            Arrays.fill(input, index, index + amountOfElements, i);
+            index += amountOfElements;
         }
-        return result;
+        return input;
+    }
+
+    private int max(int[] input) {
+        return Arrays.stream(input).max().orElse(0);
     }
 }

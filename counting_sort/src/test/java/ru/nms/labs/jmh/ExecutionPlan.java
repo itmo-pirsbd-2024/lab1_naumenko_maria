@@ -16,7 +16,7 @@ public class ExecutionPlan {
     @Param({"1"})
     private int seed;
 
-    @Param({"100000000"})
+    @Param({"50000000"})
     private int size;
 
     @Getter

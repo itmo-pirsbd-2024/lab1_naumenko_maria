@@ -1,27 +1,28 @@
 package ru.nms.labs.service;
 
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicIntegerArray;
+import java.util.stream.IntStream;
 
 public class CountingSort {
 
     public int[] sort(int[] input) {
         int maxElem = max(input);
-        int[] countedInput = countElements(input, maxElem);
+        AtomicIntegerArray countedInput = countElements(input, maxElem);
         return formResultList(countedInput, input);
     }
 
-    private int[] countElements(int[] input, int maxElem) {
-        int[] countedInput = new int[maxElem + 1];
-        for (int elem : input) {
-            countedInput[elem] = countedInput[elem] + 1;
-        }
+    private AtomicIntegerArray countElements(int[] input, int maxElem) {
+        AtomicIntegerArray countedInput = new AtomicIntegerArray(maxElem + 1);
+
+        IntStream.of(input).parallel().forEach(countedInput::incrementAndGet);
         return countedInput;
     }
 
-    private int[] formResultList(int[] countedInput, int[] input) {
+    private int[] formResultList(AtomicIntegerArray countedInput, int[] input) {
         int index = 0;
-        for (int i = 0; i < countedInput.length; i++) {
-            int amountOfElements = countedInput[i];
+        for (int i = 0; i < countedInput.length(); i++) {
+            int amountOfElements = countedInput.get(i);
             Arrays.fill(input, index, index + amountOfElements, i);
             index += amountOfElements;
         }

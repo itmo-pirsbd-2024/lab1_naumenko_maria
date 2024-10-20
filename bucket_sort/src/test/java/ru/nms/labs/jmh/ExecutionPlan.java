@@ -22,6 +22,10 @@ public class ExecutionPlan {
     @Getter
     private final List<Integer> testData = new ArrayList<>();
 
+    @Getter
+    @Param({"10000000"})
+    private int amountOfBuckets;
+
     @Setup(Level.Trial)
     public void setup() {
         testData.clear();

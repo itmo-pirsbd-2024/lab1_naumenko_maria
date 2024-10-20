@@ -16,9 +16,9 @@ public class BucketSortTest {
 
     @Test
     void shouldSortElements() {
-        List<Integer> input = TestDataGenerator.generateRandomList(1000, 0);
+        List<Integer> input = TestDataGenerator.generateRandomList(10000000, 0);
         List<Integer> sortedInput = new ArrayList<>(input);
         Collections.sort(sortedInput);
-        assertEquals(sortedInput, bucketSort.sort(input));
+        assertEquals(sortedInput, bucketSort.sort(input, 2000000));
     }
 }

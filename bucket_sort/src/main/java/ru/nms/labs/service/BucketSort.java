@@ -13,7 +13,7 @@ public class BucketSort {
         if (range == 0) return input;
 
         return input.parallelStream()
-                .collect(Collectors.groupingBy(elem -> (int) (elem * (double) (bucketsAmount - 1) / (double) minAndMax.max)))
+                .collect(Collectors.groupingByConcurrent(elem -> (int) (elem * (double) (bucketsAmount - 1) / (double) minAndMax.max)))
                 .entrySet()
                 .parallelStream()
                 .peek((entry) -> Collections.sort(entry.getValue()))

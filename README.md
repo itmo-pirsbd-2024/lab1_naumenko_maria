@@ -16,23 +16,23 @@
 
 **Benchmark:**
 
-![](/Users/astonuser/IdeaProjects/dev/java_lab1/imgs/worst_counting_sort_benchmark.png)
+![worst_counting_sort_benchmark.png](imgs%2Fworst_counting_sort_benchmark.png)
 
 **CPU flamegraph:**
 
-![](/Users/astonuser/IdeaProjects/dev/java_lab1/imgs/worst_counting_sort_cpu_flamegraph.png)
+![worst_counting_sort_cpu_flamegraph.png](imgs%2Fworst_counting_sort_cpu_flamegraph.png)
 
 Видно, что большая часть времени алгоритма уходит на "доращивание" листа до нужных размеров при появлении числа, большего чем текущий размер листа(функция growListToSize). Так же видно, что немалая часть времени тратится на боксинг\анбоксинг инта(intValue + valueOf). И еще время уходит на операции листа (add, get, next).
 
 **Memory allocation flamegraph:**
 
-![](/Users/astonuser/IdeaProjects/dev/java_lab1/imgs/worst_counting_sort_mem_flamegraph.png)
+![worst_counting_sort_mem_flamegraph.png](imgs%2Fworst_counting_sort_mem_flamegraph.png)
 
 Здесь видно, что основной расход памяти здесь так же вызван боксингом\анбоксингом и наращиванием листа. 
 
 **CPU and Heap Memory**
 
-![](/Users/astonuser/IdeaProjects/dev/java_lab1/imgs/worst_counting_sort_mem_cpu_usage.png)
+![worst_counting_sort_mem_cpu_usage.png](imgs%2Fworst_counting_sort_mem_cpu_usage.png)
 
 Если посмотрим на график использования памяти\проца, то увидим что значения достигают 70% на проце и 1500 МБ по размеру кучи.
 

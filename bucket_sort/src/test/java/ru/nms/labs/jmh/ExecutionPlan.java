@@ -13,11 +13,15 @@ import java.util.List;
 @State(Scope.Benchmark)
 public class ExecutionPlan {
 
-    @Param({"1"/*, "2", "3", "5", "7", "11"*/})
+    @Param({"1"})
     private int seed;
 
-    @Param({/*"100", "1000", "10000", */"50000000"/*, "1000000"*/})
+    @Param({"50000000"})
     private int size;
+
+    @Getter
+    @Param({"10000000"})
+    private int bucketsAmount;
 
     @Getter
     private final List<Integer> testData = new ArrayList<>();

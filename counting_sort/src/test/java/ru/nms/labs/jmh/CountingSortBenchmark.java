@@ -24,8 +24,6 @@ public class CountingSortBenchmark {
                 org.openjdk.jmh.runner.options.Options opt = new OptionsBuilder()
                 .include(CountingSortBenchmark.class.getSimpleName())
                 .shouldDoGC(true)
-                .resultFormat(ResultFormatType.JSON)
-                .result("counting-benchmark-result/worst_variant.json")
                 .build();
 
         new Runner(opt).run();

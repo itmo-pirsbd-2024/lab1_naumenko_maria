@@ -6,12 +6,12 @@ import java.util.List;
 
 public class BucketSort {
 
-    public List<Integer> sort(List<Integer> input) {
+    public List<Integer> sort(List<Integer> input, int bucketsAmount) {
         Pair minAndMax = findMinAndMax(input);
         int range = minAndMax.max - minAndMax.min;
         if (range == 0) return input;
 
-        List<List<Integer>> buckets = putToBuckets(input, minAndMax.max);
+        List<List<Integer>> buckets = putToBuckets(input, minAndMax.max, bucketsAmount);
         return flattenBuckets(buckets);
     }
 
@@ -25,15 +25,13 @@ public class BucketSort {
         return new Pair(min, max);
     }
 
-    private List<List<Integer>> putToBuckets(List<Integer> input, int max) {
+    private List<List<Integer>> putToBuckets(List<Integer> input, int max, int bucketsAmount) {
         List<List<Integer>> buckets = new ArrayList<>();
-        for (int i = 0; i < input.size() + 1; i++) {
+        for (int i = 0; i < bucketsAmount; i++) {
             buckets.add(new ArrayList<>());
         }
         for (Integer elem : input) {
-            int index = (int) (elem * (double)input.size() / (double)max);
-//            System.out.println("!!!");
-//            System.out.println(elem + " " + input.size() + " " + max);
+            int index = (int) (elem * (double)(bucketsAmount - 1) / (double)max);
             buckets.get(index).add(elem);
         }
         return buckets;
